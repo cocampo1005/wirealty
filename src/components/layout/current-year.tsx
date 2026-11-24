@@ -6,7 +6,7 @@ const subscribe = () => () => {}
 
 /**
  * Copyright year. Prerendered pages carry the build year (set in
- * next.config.ts) and the browser swaps in the current year after hydration,
+ * next.config.mjs) and the browser swaps in the current year after hydration,
  * so a long-lived deployment never shows a stale date.
  */
 export function CurrentYear() {

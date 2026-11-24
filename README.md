@@ -19,8 +19,9 @@ npm run dev          # http://localhost:3000
 
 | Script | What it does |
 |---|---|
-| `npm run dev` | Development server (sample content **on** — see below) |
-| `npm run build` | Production build |
+| `npm run dev` | Development server, Turbopack (sample content **on** — see below) |
+| `npm run dev:webpack` | Development server using Webpack, matching the production bundler |
+| `npm run build` | Production build with Webpack (`next build --webpack`) |
 | `npm start` | Serves the production build (`PORT` env var sets the port) |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Generates route types and runs `tsc --noEmit` |
@@ -141,9 +142,11 @@ The form only shows "sent" after the provider accepts the message. **Until `RESE
 This is a **Node.js application**, not a static site. It needs a host that can run `next start`:
 
 1. Node.js **20.9+**
-2. `npm ci && npm run build`
+2. `npm ci && npm run build` — the build uses **Webpack**, not Turbopack (see below)
 3. `npm start` as a long-running process (set `PORT` if required), behind HTTPS
 4. Environment variables from the table above
+
+**Why Webpack:** Turbopack requires Next's native SWC binary, which needs glibc 2.30+. Hostinger's build servers ship an older glibc, so the build runs with `--webpack`, which can fall back to the bundled WebAssembly compiler (`@next/swc-wasm-nodejs`). For the same reason the config file is plain JavaScript (`next.config.mjs`), Tailwind CSS runs through PostCSS (`postcss.config.mjs`), and the packages needed at build time (Tailwind, TypeScript, type definitions) are regular `dependencies` so they install even when dev dependencies are skipped.
 
 Server features in use: the inquiry endpoint, request-time listing search, the 404 proxy and on-demand image optimization.
 
@@ -173,6 +176,6 @@ Also confirm before launch: `NEXT_PUBLIC_SITE_URL` is the final origin, redirect
 
 ## Notes for developers
 
-- Next.js 16 with **Cache Components** and **Partial Prefetching** enabled (`next.config.ts`). Request-time data (`searchParams`, `params` on detail pages) is read inside `<Suspense>`; client components that read the pathname are wrapped the same way (`components/layout/nav-link.tsx`). The bundled docs are in `node_modules/next/dist/docs/`.
+- Next.js 16 with **Cache Components** and **Partial Prefetching** enabled (`next.config.mjs`). Request-time data (`searchParams`, `params` on detail pages) is read inside `<Suspense>`; client components that read the pathname are wrapped the same way (`components/layout/nav-link.tsx`). The bundled docs are in `node_modules/next/dist/docs/`.
 - Detail pages stream, so a missing record would otherwise return HTTP 200 with a `noindex` tag. `src/proxy.ts` checks the slug first and returns a real 404.
 - Scroll reveals (`components/ui/reveal.tsx`) are CSS-driven and only hide content when JavaScript is running; all motion respects `prefers-reduced-motion`.

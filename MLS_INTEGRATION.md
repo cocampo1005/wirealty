@@ -51,7 +51,7 @@ Three content types are deliberately kept separate, because they have different 
 4. **Return it from `getPropertyRepository()`** when credentials are present; keep the empty repository as the fallback so a missing key degrades to the "being connected" state rather than an error.
 5. **Add caching** appropriate to the provider's refresh rules, e.g. a `'use cache'` function with `cacheLife(...)` around provider calls (the project runs Next.js Cache Components).
 6. **Populate `attribution`** on every record. The detail page already renders MLS name/number, listing office, agent, last-updated and the disclaimer when present (`src/app/listings/[slug]/page.tsx`); add the same to cards if the MLS requires it.
-7. **Allow remote images**: add the provider's image host to `images.remotePatterns` in `next.config.ts` (or proxy/copy photos if the license requires it).
+7. **Allow remote images**: add the provider's image host to `images.remotePatterns` in `next.config.mjs` (or proxy/copy photos if the license requires it).
 8. **Sitemap**: add live listing URLs in `src/app/sitemap.ts` if the MLS permits indexing.
 9. **404 handling**: `src/proxy.ts` returns real 404s for unknown listing slugs only for in-memory sources. For MLS data either add a fast existence check there, or accept the page-level fallback (HTTP 200 with a `noindex` tag).
 10. **Remove sample labelling assumptions**: sample badges key off `source === 'fixture'`, so MLS records display without them automatically.

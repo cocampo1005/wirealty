@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Weston International Realty — design tokens
+   Brand colors are fixed: white, red #B21F25, charcoal #262626, blue #1F4C8F.
+   Everything else here is a supporting neutral derived from them.
+--------------------------------------------------------------------------- */
+
+@theme inline {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-display: var(--font-cinzel), "Trajan Pro", "Times New Roman", serif;
+}
+
+@theme {
+  /* Brand */
+  --color-brand-red: #b21f25;
+  --color-brand-red-deep: #8f171c;
+  --color-brand-blue: #1f4c8f;
+  --color-brand-blue-deep: #183c73;
+  --color-ink: #262626;
+
+  /* Supporting neutrals */
+  --color-navy: #12305d;
+  --color-navy-deep: #0b2044;
+  --color-slate: #5a6372;
+  --color-mist: #f3f5f8;
+  --color-mist-deep: #e7ebf1;
+  --color-line: #dde2e9;
+  --color-sky: #b4c6e2;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --shadow-panel: 0 24px 60px -28px rgb(11 32 68 / 0.35);
+  --shadow-header: 0 1px 0 0 rgb(11 32 68 / 0.08);
+
+  --animate-rise: rise 1.1s var(--ease-out-expo) both;
+  --animate-fade-up: fade-up 1s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+  --animate-unveil: unveil 1.4s var(--ease-out-expo) both;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+
+  @keyframes rise {
+    from {
+      transform: translate3d(0, 108%, 0);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes unveil {
+    from {
+      clip-path: inset(100% 0 0 0);
+    }
+    to {
+      clip-path: inset(0);
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: scale(1.02);
+    }
+    to {
+      transform: scale(1.09);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-brand-blue);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring, var(--color-brand-blue));
+    outline-offset: 3px;
+  }
+
+  /* Dark surfaces switch the focus ring to white for contrast. */
+  .on-dark {
+    --focus-ring: #fff;
+  }
+  /* …and light panels nested inside a dark section switch it back. */
+  .on-light {
+    --focus-ring: var(--color-brand-blue);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  [role="button"],
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Type scale — Cinzel for display, Montserrat for everything functional.
+--------------------------------------------------------------------------- */
+
+@utility text-display-xl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 1.35rem + 4.6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+}
+
+@utility text-display-lg {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.3rem + 2.7vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.008em;
+}
+
+@utility text-display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.625rem, 1.25rem + 1.5vw, 2.5rem);
+  line-height: 1.14;
+  letter-spacing: -0.004em;
+}
+
+@utility text-display-sm {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  line-height: 1.22;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+@utility text-label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility text-lead {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.65;
+}
+
+/* Long-form copy (privacy policy, area guides, case studies). */
+@utility prose-wi {
+  & > * + * {
+    margin-top: 1.15em;
+  }
+  & h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-top: 2.4em;
+    color: var(--color-navy-deep);
+  }
+  & h3 {
+    font-weight: 600;
+    font-size: 1.0625rem;
+    margin-top: 1.8em;
+  }
+  & ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  & ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  & ul > li + li {
+    margin-top: 0.5em;
+  }
+  & ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--color-brand-red);
+  }
+  & a {
+    color: var(--color-brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  & a:hover {
+    color: var(--color-brand-blue-deep);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Layout helpers
+--------------------------------------------------------------------------- */
+
+@utility container-wi {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility section-y {
+  padding-block: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+}
+
+@utility section-y-sm {
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+}
+
+/* Thin architectural rule used beside eyebrows and as dividers. */
+@utility rule-red {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-brand-red);
+}
+
+/* Fine blueprint-style grid used sparingly on dark surfaces. */
+@utility bg-blueprint {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+}
+
+@utility select-chevron {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%230b2044' stroke-width='1.5'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll reveals
+   Content is only hidden when JavaScript is running (html.js), so the page
+   stays fully readable without it.
+--------------------------------------------------------------------------- */
+
+html.js [data-reveal] {
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo),
+    clip-path 1.2s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal="up"]:not([data-revealed]) {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+
+html.js [data-reveal="fade"]:not([data-revealed]) {
+  opacity: 0;
+}
+
+/* Unveil clips the children rather than the observed element: a fully clipped
+   target would never register as intersecting. */
+html.js [data-reveal="unveil"] > * {
+  transition:
+    clip-path 1.3s var(--ease-out-expo),
+    scale 1.6s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js [data-reveal="unveil"]:not([data-revealed]) > * {
+  clip-path: inset(0 0 100% 0);
+  scale: 1.08;
+}
+
+html.js [data-reveal][data-revealed] {
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal]:not([data-revealed]),
+  html.js [data-reveal="unveil"]:not([data-revealed]) > * {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    scale: none;
+  }
+}

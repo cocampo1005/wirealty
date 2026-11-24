@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1241 439" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="WI-Logo" affinity:id="WI Logo" transform="matrix(1,0,0,1,-346.509534,-889.505288)">
+        <rect x="346.51" y="889.505" width="1240.869" height="438.28" style="fill:none;"/>
+        <g transform="matrix(1,0,0,1,9.449963,3.889959)">
+            <g transform="matrix(0.962679,0,0,0.962679,4.649341,83.415651)">
+                <path d="M485.913,907.89C510.092,895.053 537.668,887.779 566.93,887.779C662.497,887.779 740.085,965.367 740.085,1060.935C740.085,1156.502 662.497,1234.09 566.93,1234.09C471.363,1234.09 393.774,1156.502 393.774,1060.935C393.774,1015.58 411.249,974.275 439.828,943.391L439.828,1102.977C441.2,1141.926 473.252,1173.125 512.533,1173.125C531.723,1173.125 549.187,1165.679 562.192,1153.521C575.197,1165.679 592.662,1173.125 611.851,1173.125C651.132,1173.125 683.184,1141.926 684.556,1102.977L684.556,993.892C684.556,993.892 677.674,1006.097 661.544,1006.097C645.415,1006.097 638.472,993.892 638.472,993.892L638.472,1102.977C637.162,1116.519 625.735,1127.12 611.851,1127.12C597.986,1127.12 586.571,1116.547 585.236,1103.03L585.238,1102.977L585.238,1049.379L539.156,1049.379L539.156,1102.977L539.146,1102.977L539.148,1103.03C537.813,1116.547 526.398,1127.12 512.533,1127.12C498.65,1127.12 487.223,1116.519 485.913,1102.977L485.913,907.89ZM661.526,950.418C648.815,950.418 638.495,960.738 638.495,973.449C638.495,986.16 648.815,996.479 661.526,996.479C674.237,996.479 684.556,986.16 684.556,973.449C684.556,960.738 674.237,950.418 661.526,950.418Z" style="fill:rgb(178,31,37);"/>
+            </g>
+            <g transform="matrix(0.475618,0,0,0.475618,410.988088,541.955778)">
+                <text x="809.063px" y="1060.935px" style="font-family:'TrajanPro-Bold', 'Trajan Pro', serif;font-weight:700;font-size:184.154px;fill:rgb(31,76,143);">Wes<tspan style="letter-spacing:-2.39px">t</tspan><tspan style="letter-spacing:-5.52px">o</tspan>n</text>
+                <text x="809.063px" y="1244.906px" style="font-family:'TrajanPro-Bold', 'Trajan Pro', serif;font-weight:700;font-size:184.154px;fill:rgb(31,76,143);"><tspan style="letter-spacing:-3.68px">I</tspan>nt<tspan style="letter-spacing:-3.68px">e</tspan>rn<tspan style="letter-spacing:-11.97px">a</tspan>t<tspan style="letter-spacing:-1.84px">i</tspan><tspan style="letter-spacing:-5.52px">o</tspan>nal</text>
+                <text x="809.063px" y="1428.877px" style="font-family:'TrajanPro-Bold', 'Trajan Pro', serif;font-weight:700;font-size:184.154px;fill:rgb(31,76,143);">Rea<tspan style="letter-spacing:-8.84px">l</tspan><tspan style="letter-spacing:0.92px">t</tspan>y</text>
+            </g>
+        </g>
+    </g>
+</svg>
